@@ -9,7 +9,7 @@ info = dicominfo(files(1,1).name); % also get the info saved with dicom files
 pixel_size=info.PixelSpacing(1); % the size of one pixel in millimeter
 
 % Combine all 2D images into one big 3D matrix, Image. 
-% Image(x,y,z) = I can be represented as the pixel(x,y,z) in the image has
+% Image(x,y,z) = I can be interpreted as the pixel(x,y,z) in the image has
 % brightness as I.
 
 for l=1:numel(files)
