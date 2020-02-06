@@ -2,11 +2,11 @@ clear all;
 close all;
 %% Step 1: cd to the folder where all the dicom images are saved
 % replace with your own folder
-cd '/Users/zhennongchen/Documents/Zhennong_master thesis/stenosisphantom03/stenosis_raw data/100_640_L_std_single_3/M2_single'
+cd '/Users/zhennongchen/Documents/Zhennong_Senior project/Patient_000'
 %% Step 2: find all the dicom files in this folder
 files=dir('*.dcm'); 
 info = dicominfo(files(1,1).name); % also get the info saved with dicom files
-pixel_size=info.PixelSpacing(1); % the size of one pixel in millimeter
+%pixel_size=info.PixelSpacing(1); % the size of one pixel in millimeter
 
 % Combine all 2D images into one big 3D matrix, Image. 
 % Image(x,y,z) = I can be interpreted as the pixel(x,y,z) in the image has
@@ -14,7 +14,7 @@ pixel_size=info.PixelSpacing(1); % the size of one pixel in millimeter
 
 for l=1:numel(files)
     img=dicomread(files(l,1).name);
-    img = info.RescaleSlope.*img + info.RescaleIntercept;
+    %img = info.RescaleSlope.*img + info.RescaleIntercept;
     Image(:,:,l) = img; 
 end
 Image = double(Image);
@@ -33,3 +33,5 @@ figure(3)
 montage(permute(Image(:,:,20:30),[1 2 4 3]),[min(Image(:)) max(Image(:))]);
 % as you may find by yourself already, in the displayed image, the vertical
 % axis is x-axis and the horizontal is y-axis.
+%% Step 5: only visualize pixels in a certain brightness range
+slice = Image(:,:,20);
