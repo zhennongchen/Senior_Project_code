@@ -55,3 +55,10 @@ view(140,80)
 % you should output the image same as centerline_example.png
 %% Get the coordiantes for all center points
 [x,y,z]=ind2sub(size(skel),find(skel==1));
+%% Manual prune of the centerline
+% if you think one center point (x1,y1,z1) needs to be removed because it's
+% just noise of the algorithm
+% use: skel(x1,y1,z1) = 0
+% if you think you should add center point (x1,y1,z1) to make the
+% centerline smoother
+% use: skel(x1,y1,z1) = 1
